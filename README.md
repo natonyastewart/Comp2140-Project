@@ -1,1 +1,1 @@
-# Comp2140-Project
+# Comp2140 - Software Engineering Project
