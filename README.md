@@ -10,4 +10,4 @@ This is the Final Project for:
 - Jusayne Chambers
 
 
-# How to run the code
+# How to Run Code
