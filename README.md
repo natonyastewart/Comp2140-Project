@@ -8,3 +8,6 @@ This is the Final Project for:
 - Aalyah Johnson 
 - Ricardo Munda
 - Jusayne Chambers
+
+
+# How to run the code
