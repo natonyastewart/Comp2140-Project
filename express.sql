@@ -56,13 +56,4 @@ CREATE TABLE `payment` (
     PRIMARY KEY  (`id`)
 );
 
-DROP TABLE IF EXISTS `notes`;
-CREATE TABLE `notes` (
-    `id` integer(15) NOT NULL auto_increment,
-    `contact_id` integer(15) NOT NULL default '0',
-    `comment` text NOT NULL default '',
-    `created_by` integer(15) NOT NULL default '0',
-    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY  (`id`)
-);
 
