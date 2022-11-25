@@ -30,7 +30,6 @@
 				<div class="records">
 					<div class="top-button">
 						<h1>New Customer</h1>
-						<div><a href="customer.php"><i class="fa fa-plus" aria-hidden="true"></i>Add Customer</a></div>
 					</div>	
 					<div class="record2">
 						<div class="tables">
