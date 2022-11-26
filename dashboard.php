@@ -42,7 +42,7 @@
 						</div>
 							</div>
 							<div class="db">
-								<?php include 'customerload.php';?>
+								
 							</div>
 						</div>
 					</div>
