@@ -30,14 +30,19 @@
 				<div class="records">
 					<div class="top-button">
 						<h1>Dashboard</h1>
-						<div>
-							<input type="text" placeholder="Search">
-						</div>
 						<div><a href="newcustomer.php"><i class="fa fa-plus" aria-hidden="true"></i>Add Customer</a></div>
 						
 					</div>	
 					<div class="record2">
 						<div class="tables">
+							<div class="db">
+							<div>
+							<input type="text" placeholder="Search Name" style="border-radius: 10px; width: 200px;">
+							<button type="button" style="border-radius: 10px; padding: 10px; background-color: rgb(48, 43, 146); color: white; width: 50px;"><i class="fa fa-search" aria-hidden="true"></i></button >
+						</div>
+							</div>
+							<div class="db">
+								<?php include 'customerload.php';?>
 							</div>
 						</div>
 					</div>
