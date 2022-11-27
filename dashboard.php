@@ -1,6 +1,3 @@
-<?php session_start();
-	if(isset($_SESSION['id'])){
-?>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -51,4 +48,3 @@
 		</div>
 	</body>
 </html>
-<?php }?>
