@@ -1,10 +1,12 @@
 DROP DATABASE IF EXISTS express;
 CREATE DATABASE express;
+GRANT ALL PRIVILEGES ON express.* TO 'admin'@'localhost' IDENTIFIED BY 'password123';
 USE express;
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
     `id` integer(15) NOT NULL auto_increment,
+    `username` varchar(25) NOT NULL default '',
     `firstname` varchar(35) NOT NULL default '',
     `lastname` varchar(35) NOT NULL default '',
     `password` varchar(35) NOT NULL default '',
@@ -14,13 +16,13 @@ CREATE TABLE `users` (
     PRIMARY KEY  (`id`)
 );
 
-INSERT INTO `users` VALUES(1,'Computer','Doctors','expressdoc2140','cd@comp2140.com','Admin',CURRENT_TIMESTAMP),
-                        (2,'Natonya','Stewart','expressdoc2140','ns@comp2140.com','Admin',CURRENT_TIMESTAMP),
-                        (3,'Joel','Rhoden','expressdoc2140','jr@comp2140.com','Admin',CURRENT_TIMESTAMP),
-                        (4,'Ricardo','Munda','expressdoc2140','rm@comp2140.com','Admin',CURRENT_TIMESTAMP), 
-                        (5,'Rayon','Hart','expressdoc2140','rh@comp2140.com','Admin',CURRENT_TIMESTAMP), 
-                        (6,'Aalyah','Johnson','expressdoc2140','aj@comp2140.com','Admin',CURRENT_TIMESTAMP), 
-                        (7,'Jusayne','Chambers','expressdoc2140','jc@comp2140.com','Admin',CURRENT_TIMESTAMP);
+INSERT INTO `users` VALUES(1,'c_doctors','Computer','Doctors','expressdoc2140','cd@comp2140.com','Admin',CURRENT_TIMESTAMP),
+                        (2,'n_stwart','Natonya','Stewart','expressdoc2140','ns@comp2140.com','Admin',CURRENT_TIMESTAMP),
+                        (3,'j_rhoden','Joel','Rhoden','expressdoc2140','jr@comp2140.com','Admin',CURRENT_TIMESTAMP),
+                        (4,'r_munda','Ricardo','Munda','expressdoc2140','rm@comp2140.com','Admin',CURRENT_TIMESTAMP), 
+                        (5,'r_hart','Rayon','Hart','expressdoc2140','rh@comp2140.com','Admin',CURRENT_TIMESTAMP), 
+                        (6,'a_johnson','Aalyah','Johnson','expressdoc2140','aj@comp2140.com','Admin',CURRENT_TIMESTAMP), 
+                        (7,'j_chambers','Jusayne','Chambers','expressdoc2140','jc@comp2140.com','Admin',CURRENT_TIMESTAMP);
 
 DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
