@@ -1,3 +1,14 @@
+//
+$(function(){
+
+    $("#login_button").click(function(){
+        console.log("nice work")
+    })
+
+});
+
+
+//JS Classes
 class UserLogin{
     username = "";
     password = "";

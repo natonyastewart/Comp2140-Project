@@ -1,6 +1,21 @@
 <?php session_start();
-	if(isset($_SESSION['id'])){
+	require("customer_class.php");
+
+	if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['telephone']) && isset($_POST['deviceID']) && isset($_POST['estCost']) && isset($_POST['assigned-to'])){
+		$fname = $_POST['fname'];
+		$lname = $_POST['lname'];
+		$telephone = $_POST['telephone'];
+		$email = $_POST['email'];
+		$deviceID = $_POST['deviceID'];
+		$estCost = $_POST['estCost'];
+		$technician = $_POST['assigned-to'];
+
+		$customer = new Customer($fname,$lname,$telephone,$email,$deviceID,$estCost,$technician);
+		$customer->addCustomer();
+	}
+
 ?>
+
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -8,6 +23,7 @@
 		<title>Comp2140 Project</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <link rel="stylesheet" href="dashboard.css">
+		<script src="Newcustomer.js"></script>
 		</head>
 	<body>
 		<?php include 'header.php';?>
@@ -29,7 +45,8 @@
 				<div class="records">
 					<h1>New Customer</h1>
 					<div class="record2">
-						<form method="post" id="form" onsubmit="popup()" action="addcontact.php"> 
+						<!-- <form method="post" id="form" onsubmit="popup()" action="addcontact.php">  -->
+							<form method = "post" action = '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>'>
 							<div class="cell">	
 								<label for="title">Title</label><br>
 								<select id="title" name="title">
@@ -58,14 +75,24 @@
 									<input type="text" name="telephone" id="telephone" required/>
 								</div>
 							</div>
+                            <div class="table">
+								<div class="cell">
+									<label for="deviceID">Device ID</label>
+									<input type="text" name="deviceID" id="deviceID" required/>
+								</div>
+								<div class="cell">
+									<label>Estimated Cost</label>
+									<input type="text" name="estCost" id="balance" required/>
+								</div>
+							</div>
 							<div class="cell">
 								<label for="assigned-to">Assigned To</label><br>
 								<select id="assigned-to" name="assigned-to">
-									<option value="2">Joel Rhoden</option>
-									<option value="3">Natonya Stewart</option>
-									<option value="4">Ricardo Munda</option>
-									<option value="5">Rayon Hart</option>
-									<option value="6">Aalyah Johnson</option>
+									<option value="1">Joel Rhoden</option>
+									<option value="2">Natonya Stewart</option>
+									<option value="3">Ricardo Munda</option>
+									<option value="4">Rayon Hart</option>
+									<option value="5">Aalyah Johnson</option>
 									<option value="6">Jusayne Chambers</option>
 								</select>
 							</div><br>
@@ -79,4 +106,3 @@
 		</div>
 	</body>
 </html>
-<?php }?>
