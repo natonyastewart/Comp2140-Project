@@ -1,9 +1,9 @@
-DROP DATABASE IF EXISTS express;
+-- DROP DATABASE IF EXISTS express;
 CREATE DATABASE express;
 GRANT ALL PRIVILEGES ON express.* TO 'admin'@'localhost' IDENTIFIED BY 'password123';
 USE express;
 
-DROP TABLE IF EXISTS `tb_upload`;
+-- DROP TABLE IF EXISTS `tb_upload`;
 CREATE TABLE `tb_upload` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -18,7 +18,7 @@ ALTER TABLE `tb_upload`
 COMMIT;
 
 
-DROP TABLE IF EXISTS `users`;
+-- DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
     `id` integer(15) NOT NULL auto_increment,
     `username` varchar(25) NOT NULL default '',
@@ -39,43 +39,40 @@ INSERT INTO `users` VALUES(1,'c_doctors','Computer','Doctors','expressdoc2140','
                         (6,'a_johnson','Aalyah','Johnson','expressdoc2140','aj@comp2140.com','Admin',CURRENT_TIMESTAMP), 
                         (7,'j_chambers','Jusayne','Chambers','expressdoc2140','jc@comp2140.com','Admin',CURRENT_TIMESTAMP);
 
-DROP TABLE IF EXISTS `customer`;
+-- DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
   `id` int(15) NOT NULL,
   `firstname` varchar(35) NOT NULL DEFAULT '',
   `lastname` varchar(35) NOT NULL DEFAULT '',
   `email` varchar(35) NOT NULL DEFAULT '',
   `telephone` varchar(20) NOT NULL DEFAULT '',
-  `assigned_to` varchar(30) NOT NULL DEFAULT '0',
-  `balance` decimal(10,0) NOT NULL DEFAULT '0',
-  `amount_paid` decimal(10,0) NOT NULL DEFAULT '0',
-  `remaining_balance` decimal(10,0) NOT NULL DEFAULT '0'
+  `assigned_to` varchar(30) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-DROP TABLE IF EXISTS `device`;
+-- DROP TABLE IF EXISTS `device`;
 CREATE TABLE `device` (
-    `id` integer(15) NOT NULL auto_increment,
-    `customer_id` varchar(35) NOT NULL default '',
-    `brand` varchar(35) NOT NULL default '',
-    `type` varchar(35) NOT NULL default '',
-    `model_number` varchar(20) NOT NULL default '',
-    `assigned_to` integer(15) NOT NULL default '0',
-    PRIMARY KEY (`id`)
-);
+  `id` int(15) NOT NULL,
+  `customer_id` varchar(35) NOT NULL DEFAULT '',
+  `brand` varchar(35) NOT NULL DEFAULT '',
+  `type` varchar(35) NOT NULL DEFAULT '',
+  `model_number` varchar(20) NOT NULL DEFAULT '',
+  `assigned_to` varchar(30) NOT NULL DEFAULT '0',
+  `category` varchar(30) NOT NULL,
+  `repair_status` varchar(30) NOT NULL,
+  `estimated_cost` decimal(10,0) NOT NULL,
+  `description` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-DROP TABLE IF EXISTS `payment`;
+-- DROP TABLE IF EXISTS `payment`;
 CREATE TABLE `payment` (
-    `id` integer(15) NOT NULL auto_increment,
-    `customer_id` integer(15) NOT NULL default '0',
-    `payment_id` integer(15) NOT NULL default '0',
-    `status` text NOT NULL default '',
-    `amount` varchar(15) NOT NULL default '',
-    `payment_date` integer(15) NOT NULL default '0',
-    `last_update` integer(15) NOT NULL default '0',
-    PRIMARY KEY  (`id`)
-);
+  `paymentid` int(15) NOT NULL,
+  `customer_id` int(15) NOT NULL DEFAULT 0,
+  `balance` decimal(10,0) NOT NULL,
+  `amount_paid` decimal(10,0) NOT NULL,
+  `remaining_balance` decimal(10,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-DROP TABLE IF EXISTS `tb_upload`;
+-- DROP TABLE IF EXISTS `tb_upload`;
 CREATE TABLE `tb_upload` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -87,9 +84,33 @@ CREATE TABLE `tb_upload` (
 --
 
 --
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `device`
+--
+ALTER TABLE `device`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`paymentid`);
+
+--
 -- Indexes for table `tb_upload`
 --
 ALTER TABLE `tb_upload`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -97,10 +118,34 @@ ALTER TABLE `tb_upload`
 --
 
 --
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `device`
+--
+ALTER TABLE `device`
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `paymentid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `tb_upload`
 --
 ALTER TABLE `tb_upload`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

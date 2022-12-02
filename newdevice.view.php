@@ -14,14 +14,10 @@
 		$description = $_POST["description"];
 		$assignedPerson = $_POST["assignedPerson"];
 
-		if (empty($customerId) || empty($brand) || empty($deviceType) || empty($modelNumber) || empty($category) || empty($repair_status) || empty($estimated_cost) || empty($description) || empty($assignedPerson)){
-			echo"All fields must be filled";
-		}
-		else{
-			$device = new Device($deviceType,$customerId,$brand,$modelNumber,$category,$repair_status,$estimated_cost,$description,$assignedPerson);
-			$device->addDevice();
-			$device->alertCustomerByDeviceID();
-		}
+		$device = new Device($deviceType,$customerId,$brand,$modelNumber,$category,$repair_status,$estimated_cost,$description,$assignedPerson);
+		$device->addDevice();
+		$device->alertCustomerByDeviceID();
+
 
 	}
 ?>

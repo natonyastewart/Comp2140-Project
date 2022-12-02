@@ -49,7 +49,7 @@
 			</div>	
 			<div class="background">
 				<div class="records">
-					<h1>Edit Payment</h1>
+					<h1>Edit Customer</h1>
 					<div class="record2">
 						<!-- <form method="post" id="form" onsubmit="popup()" action="addcontact.php">  -->
 							<form method = "post" action = '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>'>
