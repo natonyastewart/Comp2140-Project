@@ -10,4 +10,7 @@ This is the Final Project for:
 - Jusayne Chambers
 
 
+<<<<<<< HEAD
 # How to Run Code
+=======
+>>>>>>> 680c75abb7fe0ac33285ec8e418044ccb485f0ee
