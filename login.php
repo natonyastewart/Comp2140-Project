@@ -1,25 +1,3 @@
-<?php
-$servername = "localhost";
-$username = "admin";
-$password = "password123";
-
-try {
-  $conn = new PDO("mysql:host=$servername;dbname=express", $username, $password);
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  //echo "Connected successfully";
-} catch(PDOException $e) {
-  echo "Connection failed: " . $e->getMessage();
-}
-
-function verify_data($d){
-  $d = trim($d);
-  $d = stripslashes($d);
-  $d = htmlspecialchars($d);
-  return $d;
-}
-
-?>
-
 <head>
 <link href="login.css" rel="stylesheet"/>
 </head>
@@ -33,24 +11,30 @@ function verify_data($d){
     <input type="submit">
     </form>
     <h4><?php
+      require_once("login_class.php");
+      
+      function verify_data($d){
+        $d = trim($d);
+        $d = stripslashes($d);
+        $d = htmlspecialchars($d);
+        return $d;
+      }
       if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $user_name = verify_data($_POST["username"]);
         $pass_word = verify_data($_POST["password"]);
+        $login_acc = new UserLogin($user_name,$pass_word);
         if (strlen($user_name) > 0 && strlen($pass_word) > 0){
-          $admins_sql = "SELECT * FROM users WHERE username = '{$user_name}' and password = '{$pass_word}';";
-          $result = $conn->query($admins_sql);
-          $row = $result->rowCount();
-          if ($row == 1){
+          if ($login_acc->isValidLogin() == TRUE){
             header("Location:dashboard.php");
             exit();
           }
           else{
-            echo "";
+            echo"<h4>Invalid username or password entered</h4>";
           }
         }
         else{
-          echo "";
-        }
+          echo"<h4>Invalid username or password entered</h4>";
+        }    
       } 
     ?></h4>
     <span class="login-text1">

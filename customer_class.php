@@ -5,27 +5,14 @@ class Customer{
 		private $lname;
         private $phoneNumber;
         private $emailAddress;
-        private $deviceID;
-        private $balance;
         private $technician;
-        private $admins = array("Joel Rhoden","Natonya Stewart","Ricardo Munda","Rayon Hart","Aalyah Johnson","Jusayne Chambers");
     
-        function __construct($fname, $lname, $phoneNumber, $emailAddress, $deviceID, $balance, $technician){
+        function __construct($fname, $lname, $phoneNumber, $emailAddress, $technician){
             $this->fname = ucfirst($fname);
             $this->lname = ucfirst($lname);
             $this->phoneNumber = $phoneNumber;
             $this->emailAddress = $emailAddress;
-            $this->deviceID = $deviceID;
-           	$this->balance = $balance;
-            $this->set_technician($this->admins,$technician);
-        }
-
-        function set_technician($adminL,$i){
-            $this->technician = $adminL[(int)$i-1];
-        }
-
-        function updateDevice($deviceID){
-            $this->deviceID = $deviceID;
+            $this->technician = $technician;
         }
     
         function updateBalance($newBalance){
@@ -48,10 +35,10 @@ class Customer{
             return $this->technician;
         }
 
-        function addCustomer(){
+        function get_customerID(){
             $host = 'localhost';
-            $username = 'admin';
-            $password = 'password123';
+            $username = 'root';
+            $password = '';
             $dbname = 'express';
 
             $link = mysqli_connect($host, $username, $password, $dbname);
@@ -59,11 +46,49 @@ class Customer{
                 die("ERROR: Could not connect. " . mysqli_connect_error());
             }
             else{
-                $sql_check = "SELECT firstname, lastname, email FROM customer WHERE firstname = '$this->fname'" ;
+                $sql_check = "SELECT id FROM customer WHERE firstname = '$this->fname'" ;
                 $result = mysqli_query($link,$sql_check);
                 
                 if ($result->num_rows == 1){
-                    echo "<h4>Record already created.</h4>";
+                    $row = $result->fetch_assoc();
+                    return $row['id'];
+                }
+                else{
+                    return -1;
+                }
+                
+            }
+            mysqli_close($link);
+        }
+
+        function addCustomer(){
+            
+            $host = 'localhost';
+            $username = 'root';
+            $password = '';
+            $dbname = 'express';
+
+            $link = mysqli_connect($host, $username, $password, $dbname);
+            if($link === false){
+                die("ERROR: Could not connect. " . mysqli_connect_error());
+            }
+            else{
+                $sql_check = "SELECT id FROM customer WHERE firstname = '$this->fname'AND lastname = '$this->lname'" ;
+                $result = mysqli_query($link,$sql_check);
+
+                if ($result->num_rows == 1){
+                    $row = mysqli_fetch_assoc($result);
+                    $id = $row['id'];
+    
+                    $sql_check = "UPDATE customer SET firstname = '$this->fname',lastname = '$this->lname',email = '$this->emailAddress', telephone = '$this->phoneNumber', assigned_to = '$this->technician' WHERE id = '$id'" ;
+                
+                    if (mysqli_query($link,$sql_check)) {
+                        echo "<h4>Customer updated successfully</h4>";
+                    } else {
+                        echo "Error updating record: " . mysqli_error($conn);
+                    }
+
+                        
                 }
                 else{
                     $sql = "INSERT INTO customer (firstname, lastname, email, telephone, assigned_to) VALUES

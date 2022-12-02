@@ -1,7 +1,7 @@
 <?php
     $host = 'localhost';
-	$username = 'admin';
-	$password = 'password123';
+	$username = 'root';
+	$password = '';
 	$dbname = 'express';
 
     try {
