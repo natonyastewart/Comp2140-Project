@@ -15,7 +15,7 @@
             $sql_check = "DELETE FROM device WHERE id = '$deviceID'" ;
             
             if (mysqli_query($link,$sql_check)) {
-                echo "<h4>Record deleted successfully</h4>";
+                echo "<script>console.log('Record deleted successfully')</script>";
                 } else {
                 echo "Error delete record: " . mysqli_error($conn);
                 }
